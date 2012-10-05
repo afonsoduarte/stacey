@@ -1,6 +1,6 @@
-<ul id="navigation" class="col two">
+<ul id="navigation">
   {% for child in page.root %}
-    <li>
+    <li class="{{ child.slug }}{% if child.is_current %} active{% endif %}">
       <a href="{{ child.url }}">{{ child.title }}</a>
       {% include 'partials/navigation/children.html' with { 'page' : child } %}
     </li>

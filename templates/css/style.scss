@@ -1,0 +1,524 @@
+@import "normalize";
+@import "bourbon/bourbon";
+@import "settings";
+@import "neat/neat";
+@import "boilerplate";
+
+// VARIABLES
+
+$gutter: 20px;
+$column-width: 60px;
+$fontsize: 16px;
+$bigfontsize: 20px;
+$smallfontsize: 13px;
+$baseline: 22px;
+
+
+@font-face {
+    font-family: 'europa-icons';
+    src: url('/fonts/europa-icons-regular.eot');
+    src: url('/fonts/europa-icons-regular.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/europa-icons-regular.woff') format('woff'),
+         url('/fonts/europa-icons-regular.ttf') format('truetype'),
+         url('/fonts/europa-icons-regular.svg#europa-icons-regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'QuadraatSans';
+    src: url('/fonts/QuadraatSansWeb.eot');
+    src: url('/fonts/QuadraatSansWeb.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/QuadraatSansWeb.woff') format('woff'),
+         url('/fonts/QuadraatSansComp.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'QuadraatSans';
+    src: url('/fonts/QuadraatSansWeb-Ita.eot');
+    src: url('/fonts/QuadraatSansWeb-Ita.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/QuadraatSansWeb-Ita.woff') format('woff'),
+         url('/fonts/QuadraatSansComp-Ita.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+// MIXINS 
+
+@mixin cells-in-a-row($n) {
+  $column-span: $grid-columns / $n;
+  @include span-columns($column-span);
+  @include nth-omega(#{$n}n);
+  &:nth-child(#{$n}n + 1) {
+    clear: left;
+  }
+}
+
+@mixin yellow-header {
+  display: block;
+  margin-bottom: ($baseline)/2;
+  @include clearfix;
+
+  h1 {
+    float: left;
+    margin: 0;
+    background: rgb(255,235,0);
+    height: $baseline * 1.5;
+    padding: 5px 1em;
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+@mixin monospace {
+  font-family: Courier, monospace;
+  font-size: $smallfontsize;
+  line-height: 1.4em; 
+  text-indent: 0;
+}
+
+@mixin monospace-container {
+  @include monospace;  
+
+  h1, p, ul {
+    @include monospace;
+  }
+
+  p {
+    margin-bottom: $baseline;    
+  }
+
+  h1 {
+    margin: $baseline 0 $baseline/2;
+  }
+
+  ul {
+    margin: $baseline 0 0;
+    padding: 0;
+
+    li {
+      margin: 0 0 $baseline/2;
+      padding: 0;
+      list-style: none;
+    }
+  }
+}
+
+@mixin active-menu {
+  background: black;
+  a { color: white; }
+}
+
+// GENERAL STYLES
+
+h1,
+h2, 
+h3,
+p {
+  font-size: $fontsize;
+  font-weight: normal;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: black;
+}
+
+body, input, textarea {
+  font-family: 'QuadraatSans', sans-serif;
+  line-height: $baseline;
+}
+
+.container {
+  background: url(/images/bg.png);
+  min-height: 800px;
+  @include outer-container;
+
+  padding-bottom: 2 * $baseline;
+
+}
+
+// HEADER
+
+header#page-header {
+  border-bottom: 1px solid;
+  margin-top: $baseline ;
+  margin-bottom: $baseline;
+
+  @include span-columns(12);
+  @include row(table);
+
+  h1 {
+    @include span-columns(8, table);
+    vertical-align: bottom;
+
+    a { 
+      display: block;
+      width: 159px;
+      height: 102px;
+      background: url(/images/a-million-minutes-logo.png) no-repeat top left;
+      margin-bottom: 9px;
+    }
+  }
+
+  nav {
+    @include span-columns(4, table);
+    @include omega();
+    vertical-align: bottom;
+
+    h1 {
+      @include visuallyhidden;
+    }
+
+    ul {
+      padding: 0;
+
+      li {
+        float: left;
+        padding: 5px 1em;
+
+        &.active {
+          @include active-menu;
+        }
+
+        a {
+          color: black;
+          text-decoration: none;
+        }
+
+        ol {
+          @include visuallyhidden;
+        }
+      }
+    }
+
+
+  }
+}
+
+.home header#page-header nav li.about {
+  background: black;
+  a { color: white; }
+}
+
+// FOOTER
+
+footer {
+  // position: absolute;
+  // top: 0;
+  // width: 1200px;
+  clear: both;
+
+  .ticker-wrapper {
+    display: inline;
+
+    &:after {
+      content: "_";
+      display: inline;
+    }
+
+    p {
+      max-width: 10000px;
+      @include monospace;
+    }
+
+  }
+
+  ul#twitter-feed {
+    list-style: none;
+    padding: 0;
+    
+    li {
+
+      p {
+        @include monospace;
+        width: 2000px;
+        max-width: 10000px;
+      }
+
+      // li:after {
+      //   padding: 0 .5em;
+      //   content: " \007C ";
+      // }
+      // li:last-child:after {
+      //   content: "";
+      // }
+    }
+  }
+}
+
+// PROJECTS
+
+section.projects {
+  @include fill-parent;
+
+  & > h1 {
+    @include visuallyhidden;
+  }
+
+  article {
+    @include cells-in-a-row(3);
+    margin-bottom: $baseline;
+
+    header {
+      @include yellow-header;
+    }
+
+    header.with-pdf {
+      background: rgb(255,235,0);
+      height: 34px;
+
+      h1 {
+        display: inline-block;
+        float: left;
+      }
+
+      .pdf {
+        float: right;
+        font-family: Courier, monospace;
+        line-height: 1.2em;
+        margin: 5px 1em;
+
+        a {
+          text-decoration: none;
+          
+          &:after {
+            font-family: europa-icons;
+            content: "AB";
+          }  
+        }
+      }    
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .read-more {
+      font-family: Courier, monospace;
+      font-size: $smallfontsize;
+      line-height: 1.4em;
+
+      a {
+        text-decoration: none;
+        border-bottom: 1px solid;
+      }
+    }
+
+    .timetable {
+      @include monospace-container;
+    }
+
+  }
+}
+
+// PAGES (About and Contact)
+
+.page {
+  article {
+    h1 {
+      @include visuallyhidden;
+    }
+
+    .media {
+      @include span-columns(8);
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    .content {
+      @include span-columns(4);
+      @include omega();
+
+      .footnotes {
+        margin-top: $baseline;
+
+        @include monospace-container;
+      }
+    }
+  }
+
+  p {
+    margin: 0;
+    max-width: 36em;
+    text-indent: 1.3em;
+
+    &:first-of-type {
+      text-indent: 0;
+    }
+  }
+
+  form {
+    label {
+      display: block;
+    }
+    input {
+      float: left;
+    }
+  }
+
+}
+
+// CONTACT PAGE
+.contact {
+  .main {
+    @include monospace-container;
+
+
+    .media {
+      .image {
+        float: left;
+
+        &:nth-child(2),
+        &:nth-child(4),
+        &:nth-child(6) {
+          clear: left;
+        }
+
+        &:nth-child(2) {
+          margin-right: 50px;
+        }
+
+        &:nth-child(6) {
+          margin-right: 30px;
+        }
+      }
+    }
+
+  }
+}
+
+
+// DIARY 
+
+.diary {
+
+  section > header {
+    @include yellow-header;
+  }
+
+  .upcoming {
+    @include span-columns(8);
+  }
+
+  .past {
+    @include span-columns(4);
+  }
+
+  article {
+    margin-bottom: $baseline;
+    h1 {
+      @include monospace;
+
+      margin-bottom: 0;
+      a {
+        text-decoration: none;
+      }
+    }
+    .read-more {
+      @include monospace;
+    }
+  }      
+}
+
+// PROJECT PAGE
+
+.project {
+  header#page-header nav {
+    ul li.projects {
+      @include active-menu;
+    }
+  }
+  .main {
+    @include clearfix;
+  }
+
+  article {
+    @include span-columns(8);
+
+    header {
+      @include yellow-header;
+    }
+
+    .content {
+      @include span-columns(4 of 8);
+
+      a {
+        @include monospace;
+      }
+    }
+
+    .media {
+      @include span-columns(4 of 8);
+      @include clearfix;
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  aside {
+      @include span-columns(4);
+      @include monospace-container;
+
+      h1 {
+        margin-top: $baseline * 2 + 2;
+      }
+
+      .content {
+        overflow: scroll;
+        height: $baseline * 12;
+
+        h1, h2 {
+          margin-top: $baseline;
+        }
+      }
+  }
+
+  footer {
+    nav#siblings {
+      @include monospace-container;
+
+      ul {
+        padding: 0;
+        margin-top: 2 * $baseline;
+
+        .previous {
+          float: left;
+
+          &:after {
+            content: "\2190";
+            font-size: 1.4em;
+            float: right;
+
+          }
+        }
+
+        .next {
+          float: right;
+
+          &:before {
+            content: "\2190";
+            font-size: 1.4em;
+            float: left;
+            @include transform(rotate(180deg));
+
+          }
+        }
+      }
+    }
+  }
+}
