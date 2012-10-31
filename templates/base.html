@@ -19,10 +19,10 @@
 <body class="{{ page.slug }} {% block bodyclass %}{% endblock %} {% if page.aside %}aside{% endif %}">
   <div class="container">
 
-    <header id="page-header">
+    <header id="page-header" role="banner">
     {% block header %}
       <h1><a href="/" class="ir">{{ page.name }}</a></h1>
-      <nav>
+      <nav role="navigation">
         <h1>Main Navigation</h1>
         {% include 'partials/navigation/navigation.html' %}
       </nav>
