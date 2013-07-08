@@ -53,7 +53,7 @@ Class AssetFactory {
       # Parse the page data
       $page_data = PageData::parse_vars($page_data, true, "");
       # Merge original data with associated page data
-      $merged_data = array_merge($asset->data, $page_data);
+      $merged_data = array_merge($asset->data, $page_data? $page_data : array() );
       return $merged_data;
 
     } else {
