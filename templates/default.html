@@ -1,17 +1,9 @@
 {% extends "base.html" %}
 
 {% block main %}
-  <article class="description">
-    <h1>{{ page.title }}</h1>
+  {% include 'partials/showcase-list.html' with { 'page' : './content/1.projects' }  %}
+{% endblock %}
 
-    <div class="content">
-    {{ page.content }}
-
-      <div class="footnotes">
-      {{ page.footnotes }}
-      {% include 'partials/assets/pdfs.html' %}
-      </div>
-    </div>
-
-  </article>
+{% block script %}
+  {% include 'partials/scripts.html' %}
 {% endblock %}

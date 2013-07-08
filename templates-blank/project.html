@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <article id="{{ page.id }}">
+    <header>
+      <h1>  
+        {{ page.title }}
+      </h1>
+    </header>
+
+    <div class="content">
+      {{ page.content }}
+    </div>
+
+    {% include 'partials/assets/media.html' %}
+
+  </article>
+
+{% endblock %}
+
+{% block footer %}
+  {% if page.siblings %}
+  <nav id="siblings">
+    <ul>
+      {% for prev in page.previous_sibling %}<li class="previous"><a href="{{ prev.url }}">{{ prev.title }}</a></li>{% endfor %}
+      {% for prev in page.next_sibling %}<li class="next"><a href="{{ prev.url }}">{{ prev.title }}</a></li>{% endfor %}
+    </ul>
+  </nav>
+  {% endif %}
+{% endblock %}
