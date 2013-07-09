@@ -12,16 +12,8 @@ Class AssetFactory {
     $page_path = implode('/', $path);
 
     # return any page data scoped against the asset filename
-    $page_data = self::$store[$page_path];
-
-    foreach ($page_data[$file_name] as $key => $value) {
-      # Parse markdown is newline is found
-      if (strpos($value, "\n") !== false) {
-        $page_data[$file_name][$key] = Markdown( trim( $value ) ); 
-      }
-    }
-    
-    return isset($page_data[$file_name]) ? $page_data[$file_name] : false;
+    $page_data = self::get($page_path);
+    return isset($page_data[strtolower($file_name)]) ? $page_data[strtolower($file_name)] : array();
   }
 
   static function &create($file_path) {
@@ -53,7 +45,7 @@ Class AssetFactory {
       # Parse the page data
       $page_data = PageData::parse_vars($page_data, true, "");
       # Merge original data with associated page data
-      $merged_data = array_merge($asset->data, $page_data? $page_data : array() );
+      $merged_data = array_merge($asset->data, $page_data);
       return $merged_data;
 
     } else {
