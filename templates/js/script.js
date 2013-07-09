@@ -1,36 +1,36 @@
-var k_keys = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]
-  , k_index = 0;
+var k_keys = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65],
+    k_index = 0;
 
 $(document).keydown(function(event) {
 
   // LEFT
   if (event.which == 37) {
-    Europa.activeArticle.trigger('previousSlide');
+    c.activeArticle.trigger('previousSlide');
     event.preventDefault();
   }
   // DOWN
   else if (event.which == 40){
-    Europa.goToNextArticle();
+    c.goToNextArticle();
     event.preventDefault();
   }
   // TOP
   else if (event.which == 38){
-    Europa.goToPreviousArticle();
+    c.goToPreviousArticle();
     event.preventDefault();
   }
   // RIGHT
   else if (event.which == 39){
-    Europa.activeArticle.trigger('nextSlide');
+    c.activeArticle.trigger('nextSlide');
     event.preventDefault();
   }
 
   // i
   else if (event.which == 73){
-    Europa.activeArticle.toggleClass('description-active');
+    c.activeArticle.toggleClass('description-active');
   }
   // ESC
   else if (event.which == 27){
-    Europa.activeArticle.removeClass('description-active');
+    c.activeArticle.removeClass('description-active');
   }
 
   if(event.keyCode === k_keys[k_index++]){
@@ -56,7 +56,7 @@ $('.showcase')
     $(this).gallery();
   })
   .waypoint(function(e) {
-    Europa.updateURL(e.target.id);
+    c.updateURL(e.target.id);
     e.stopPropagation();
   }, {
     onlyOnScroll: true,
@@ -91,7 +91,6 @@ if( geo === 'au') {
   $('body').addClass('au');
 }
 
-Europa.init();
-
 });
 
+var c = new Controller();
