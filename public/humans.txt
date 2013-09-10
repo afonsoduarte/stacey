@@ -1,0 +1,13 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Afonso Martins - http://afn.so
+    Europa – http://europaeuropa.co.uk
+
+# TECHNOLOGY COLOPHON
+    
+    Stacey App
+    Neat, Bourbon, SASS
+    jQuery, Modernizr
