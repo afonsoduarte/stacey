@@ -35,3 +35,17 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !public/
 RewriteRule ^(.+)$ public/$1 [L]
+
+# Allow basic authentication
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+
+# Prevent access to .txt files
+<Files ~ "\.txt$">
+  Order allow,deny
+  Deny from all
+</Files>
+
+# Increase cookie security
+<IfModule php5_module>
+  php_value session.cookie_httponly true
+</IfModule>
