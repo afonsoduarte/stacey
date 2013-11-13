@@ -8,3 +8,5 @@ app/_cache/images/*
 *.scssc
 .sass-cache/*
 logs
+content
+content/*
