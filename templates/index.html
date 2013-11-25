@@ -1,11 +1,5 @@
 {% extends "base.html" %}
 
-{% block bodyclass %}home{% endblock %}
-
 {% block main %}
-  {% include 'partials/showcase-list.html' with { 'page' : './content/1.projects' }  %}
-{% endblock %}
-
-{% block script %}
-  {% include 'partials/scripts.html' %}
+  {% include 'partials/project-list.html' with { 'page' : './content/1.projects' }  %}
 {% endblock %}
