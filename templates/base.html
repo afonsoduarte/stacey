@@ -23,7 +23,7 @@
     <div class="main" role="main">
     {% block main %}{% endblock %}
     </div>
-    
+
     <div class="row">
       <div class="large-12 columns">
         <h2>Welcome to Foundation</h2>
@@ -102,25 +102,12 @@
         </ul>
       </div>
     </div>
-    
+
     {% block script %}
     <script src="{{ page.root_path }}templates/bower_components/jquery/jquery.min.js"></script>
     <script src="{{ page.root_path }}templates/bower_components/foundation/js/foundation.min.js"></script>
     <script src="{{ page.root_path }}templates/js/app.js"></script>
     {% endblock %}
-
-    <!-- Piwik --> 
-    <script type="text/javascript">
-    var pkBaseURL = (("https:" == document.location.protocol) ? "https://afn.so/analytics/" : "http://afn.so/analytics/");
-    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-    </script><script type="text/javascript">
-    try {
-    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
-    piwikTracker.trackPageView();
-    piwikTracker.enableLinkTracking();
-    } catch( err ) {}
-    </script><noscript><img src="http://afn.so/analytics/piwik.php?idsite={{ page.piwik }}" style="border:0" alt="" /></noscript>
-    <!-- End Piwik Tracking Code -->
 
   </body>
 </html>
