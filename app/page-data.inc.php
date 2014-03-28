@@ -192,8 +192,15 @@ Class PageData {
       if(is_readable($file_path)) {
         ob_start();
         include $file_path;
-        $page->$var_name = Markdown(ob_get_contents());
+        $content = ob_get_contents();
         ob_end_clean();
+
+        $relative_path = preg_replace('/^\.\//', Helpers::relative_root_path(), $page->file_path);
+
+        # replace the only var in your content - page.path for your inline html with images and stuff
+        if (is_string($content)) $content = preg_replace('/{{\s*path\s*}}/', $relative_path . '/', $content);
+
+        $page->$var_name = Markdown($content);
       } else {
         $page->$var_name = '';
       }
