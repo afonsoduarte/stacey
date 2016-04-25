@@ -10,6 +10,7 @@ class Config {
   public static $templates_folder = './templates';
   public static $cache_folder = './app/_cache';
   public static $extensions_folder = './extensions';
+  public static $useRequestCache = FALSE;
 
   /* STACEY CUSTOMIZATIONS */
 

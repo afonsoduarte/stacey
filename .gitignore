@@ -5,6 +5,9 @@ app/_cache/templates/*
 !app/_cache/templates/.gitignore
 app/_cache/images/*
 !app/_cache/images/.gitignore
+!app/_cache/images/rendered/.gitignore
+!app/_cache/images/request/.gitignore
+
 *.scssc
 .sass-cache/*
 logs

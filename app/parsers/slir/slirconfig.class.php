@@ -45,6 +45,7 @@ class SLIRConfig extends SLIRConfigDefaults
 
 	public static function init()
 	{
+    self::$useRequestCache = Config::$useRequestCache;
     self::$cacheDir = '../../../'.Config::$cache_folder.'/images';
     self::$documentRoot	= '../../..';
 		// This must be the last line of this function
